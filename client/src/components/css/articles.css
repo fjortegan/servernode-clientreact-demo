@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --trends: #2980b9;
+    --black: #1d1d1b;
+    --white: #fdfdfd;
+    --gray: #1d1d1bd0;
+    --promo: #e74c3c;
+}
+
+.trends{
+    color: var(--trends);
+    font-weight: bold;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin: 2% auto;
+    width: 80%;
+}
+.container h1{
+    
+    text-align: left;
+    font-size: 22px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+.container p{
+    color: var(--black);
+    text-align: left;
+    font-size: 15px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+.sudaderas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    margin-top: 2%;
+}
+.article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto 2%;
+    margin-bottom: 4%;
+    background-color: var(--white);
+    padding: 1em;
+    min-width: 180px;
+    min-height: 300px;
+    border-right: 5px solid #2980b9;
+    border-bottom: 5px solid #2980b9;
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.75);
+}
+
+.article h2{
+    font-size: 17px;
+    color: var(--trends);
+}
+
+.article .price{
+    color: var(--promo);
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.article button{
+    min-width: 180px;
+    padding: 0.3em;
+    cursor: pointer;
+    margin-bottom: 2%;
+    border: none;
+    border-radius: 5px;
+}
+
+#buy{
+    background-color: #2980b9;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#buy:hover{
+    background-color: var(--black);
+    transition: 0.3s;
+}
+#addtocart{
+    background-color: #2ecc71;
+    color: var(--white);
+    font-size: 14px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+#addtocart:hover{
+    background-color: var(--black);
+    transition: 0.3s;
+}
+

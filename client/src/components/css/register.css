@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --trends: #2980b9;
+    --black: #1d1d1b;
+    --background: #dff9fb;
+    --white: #fdfdfd;
+    --gray: #1d1d1bd0;
+    --promo: #e74c3c;
+    --error: var(--promo);
+}
+body{
+    background-color: var(--background);
+}
+.error{
+    color: var(--error);
+    font-weight: bold;
+    font-size: 12px;
+}
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1% auto;
+}
+.register h2{
+    color: var(--white);
+    font-weight: 300;
+}
+.trends{
+    color: var(--trends);
+    font-weight: bold;
+}
+
+.register form{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 2% auto;
+    padding: 2em;
+    border-top: 3px solid #2980b9;
+    border-right: 4px solid #2980b9;
+    background-color: var(--white);
+    border-radius: 10px;
+    color: var(--black);
+}
+form p{
+    margin-top: 2%;
+    font-size: 14px;
+    margin-bottom: 5%;
+}
+form label{
+    margin-top: 2%;
+    font-size: 14px;
+}
+form input{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: none;
+    border-bottom: 2px solid #2980b9;
+    border-right: 2px solid #2980b9;
+    border-radius: 3px;
+    outline: none;
+}
+form input[type="email"]{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: none;
+    border-bottom: 2px solid #2980b9;
+    border-right: 2px solid #2980b9;
+    border-radius: 3px;
+    outline: none;
+}
+
+form input[type="number"]{
+    -webkit-appearance: textfield !important;
+}
+form input[type="submit"]{
+    margin: auto;
+    margin-top: 10%;
+    background-color: var(--trends);
+    border: none;
+    padding: 0.6em;
+    width: 40%;
+    color: var(--white);
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form input[type="submit"]:hover{
+    color: var(--trends);
+    background-color: var(--black);
+    transition: 0.3s;
+}

@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+:root{
+    --trends: #2980b9;
+    --black: #1d1d1b;
+    --white: #fdfdfd;
+    --gray: #1d1d1bd0;
+    --promo: #e74c3c;
+}
+.display{
+    background-color: var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.display p{
+    color: var(--white);
+    font-size: 13px;
+    font-weight: bold;
+}
+.display sup{
+    color: var(--promo);
+}
+
+header{
+    background-color: var(--black);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.trendslogo{
+    width: 15%;
+    pointer-events: none;
+}
+.nav nav{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+nav a{
+    margin: auto 4%;
+    text-decoration: none;
+    color: var(--trends);
+    font-weight: bold;
+    font-size: 17px;
+    transition: 0.7s;
+}
+nav a:hover{
+    color: var(--white);
+    transition: 0.7s;
+}
+.useractions{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.useractions a{
+    text-decoration: none;
+    margin-left: 4%;
+    margin-right: 4%;
+    transition: 0.7s;
+}
+.useractions i{
+    color: var(--trends);
+}
+.useractions i:hover{
+    color: var(--white);
+    transition: 0.7s;
+}
