@@ -3,6 +3,11 @@ import axios from 'axios';
 
 import '../components/css/register.css'; 
 
+function getCookie(key) {
+  var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+  return b ? b.pop() : "";
+}
+
 const AddingArticle = (props) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -19,6 +24,7 @@ const AddingArticle = (props) => {
         method: 'post',
         headers: {
             "Content-Type": "multipart/form-data",
+            "access-token": getCookie('token'),
         },
         url: 'http://localhost:5000/sudaderas',
         data: data3

@@ -7,6 +7,11 @@ import AddingArticle from './components/AddingArticle';
 import Sudaderas from './components/Sudaderas.jsx';
 import Cart from './components/Cart'
 
+function getCookie(key) {
+  var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+  return b ? b.pop() : "";
+}
+
 function App() {
   return (
       <Router>

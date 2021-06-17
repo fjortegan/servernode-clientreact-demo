@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 import '../components/css/articles.css'; 
 
-
+function getCookie(key) {
+  var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+  return b ? b.pop() : "";
+}
 
 export default class ListaUsers extends Component {
   
@@ -12,7 +15,13 @@ export default class ListaUsers extends Component {
   componentDidMount() {
     // GET REQUEST AL ENTRAR EN LA PÁGINA
     // Petición async a nuestra url
-    fetch('http://localhost:5000/sudaderas')
+    const obj = {
+        method: 'GET',
+        headers: {
+          'access-token': getCookie('token')
+        }
+    };
+    fetch('http://localhost:5000/sudaderas', obj)
       // Body a JSON
       .then(response => response.json())
       // and update the state data to said json

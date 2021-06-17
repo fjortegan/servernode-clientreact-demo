@@ -25,7 +25,7 @@ rutasProtegidas.use((req, res, next) => {
     if (token) {
       jwt.verify(token, app.get('llave'), (err, decoded) => {      
         if (err) {
-          return res.json({ mensaje: 'Token inválida' });    
+          return res.json({ mensaje: 'Token inválida' }, 403);    
         } else {
           req.decoded = decoded;    
           next();
@@ -34,7 +34,7 @@ rutasProtegidas.use((req, res, next) => {
     } else {
       res.send({ 
           mensaje: 'Token no proveída.' 
-      });
+      }, 403);
     }
  });
 
@@ -69,17 +69,6 @@ User.init({
   modelName: 'User' // We need to choose the model name
 });
 
-(async () => {
-  // Async database reload
-  await sequelize.sync({ force: true });
-  // Building an example user
-  const u1 = User.build({name: 'Cabesa', email: 'javi@javidiaz.es', password: 'Pestillo10'});
-  await u1.save();
-  //console.log(u1);
-})();
-
-
-
 // SUDADERAS INSERT //
 class Sudaderas extends Model {}
 
@@ -106,6 +95,9 @@ Sudaderas.init({
 (async () => {
   // Async database reload
   await sequelize.sync({ force: true });
+  // Building an example user
+  const u1 = User.build({name: 'Cabesa', email: 'javi@javidiaz.es', password: 'Pestillo10'});
+  await u1.save();
   // Building an example user
   const s1 = Sudaderas.build({name: 'Adidas', image_path: "public/storage/articles/default.jpeg", price: 24.99});
   const s2 = Sudaderas.build({name: 'Nike', image_path: "public/storage/articles/default.jpeg", price: 27.99});
@@ -163,6 +155,7 @@ app.get('/login', function(req, res) {
     const token = jwt.sign(payload, app.get('llave'), {
      expiresIn: 1440
     });
+    res.cookie('token', token);
     res.json({
      mensaje: 'Autenticación correcta',
      token: token
@@ -217,7 +210,7 @@ app.get('/sudaderas/', rutasProtegidas, function (req, res) {
 });
 
 // Crear sudadera con imagen
-app.post('/sudaderas/', upload.single('image'), function (req, res) {
+app.post('/sudaderas/', rutasProtegidas, upload.single('image'), function (req, res) {
   const newSudadera = req.body;
   newSudadera['image_path'] = req.file.path;
   
