@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 var cors = require('cors');
 const multer = require('multer');
 const chalk = require('chalk');
-
+//const config = require('config');
 
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
@@ -15,6 +15,28 @@ const app = express();
 // Setup CORS for parsing Client form to json.
 app.use(cors());
 
+// Reads key from config
+app.set('llave', "pestillo");
+
+const rutasProtegidas = express.Router(); 
+rutasProtegidas.use((req, res, next) => {
+    const token = req.headers['access-token'];
+ 
+    if (token) {
+      jwt.verify(token, app.get('llave'), (err, decoded) => {      
+        if (err) {
+          return res.json({ mensaje: 'Token inválida' });    
+        } else {
+          req.decoded = decoded;    
+          next();
+        }
+      });
+    } else {
+      res.send({ 
+          mensaje: 'Token no proveída.' 
+      });
+    }
+ });
 
 // DB Auth
 const sequelize = new Sequelize('mariadb://admin:node@localhost:3306/node')
@@ -130,7 +152,25 @@ app.use('/public', express.static('public'));
 
 
 /* USER ENTRYPOINT  */
-
+// Login
+app.get('/login', function(req, res) {
+  // TODO: check user/passwd
+  //if(req.body.usuario === "asfo" && req.body.contrasena === "holamundo") {
+    const payload = {
+     user: '', 
+     check:  true
+    };
+    const token = jwt.sign(payload, app.get('llave'), {
+     expiresIn: 1440
+    });
+    res.json({
+     mensaje: 'Autenticación correcta',
+     token: token
+    });
+   //   } else {
+   //       res.json({ mensaje: "Usuario o contraseña incorrectos"})
+   //   }
+});
 
 // CREATE 
 
@@ -170,7 +210,7 @@ app.delete('/user/:id', function (req, res) {
 /* SUDADERAS ENTRYPOINT */
 
 // Listar sudaderas 
-app.get('/sudaderas/', function (req, res) {
+app.get('/sudaderas/', rutasProtegidas, function (req, res) {
   Sudaderas.findAll()
     .then(sudaderas => {res.send(sudaderas);})
     .catch(err => console.log(err));
